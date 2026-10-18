@@ -1,0 +1,110 @@
+@import "tailwindcss";
+@import "@heroui/styles";
+
+/*
+ * DaisyUI is prefixed (d-) so its component classes never collide with
+ * HeroUI's (.button, .card, .badge, .menu ...). DaisyUI supplies the native
+ * select, dropdown, menu and skeleton; HeroUI supplies Button and friends.
+ */
+@plugin "daisyui" {
+  prefix: "d-";
+  logs: false;
+}
+
+@plugin "daisyui/theme" {
+  name: "bazardor";
+  default: true;
+  prefersdark: false;
+  color-scheme: light;
+  --color-base-100: #fafcfa;
+  --color-base-200: #f0f5f0;
+  --color-base-300: #e1e8e1;
+  --color-base-content: #1d271f;
+  --color-primary: #05893e;
+  --color-primary-content: #f3fbf4;
+  --color-secondary: #187146;
+  --color-secondary-content: #f3fbf4;
+  --color-accent: #047f39;
+  --color-accent-content: #f3fbf4;
+  --color-neutral: #141915;
+  --color-neutral-content: #f0f5f0;
+  --color-info: #2f6f9f;
+  --color-info-content: #ffffff;
+  --color-success: #1a9951;
+  --color-success-content: #ffffff;
+  --color-warning: #b7791f;
+  --color-warning-content: #ffffff;
+  --color-error: #d03739;
+  --color-error-content: #fff6f5;
+  --radius-selector: 0.75rem;
+  --radius-field: 0.5rem;
+  --radius-box: 1rem;
+  --size-selector: 0.25rem;
+  --size-field: 0.25rem;
+  --border: 1px;
+  --depth: 0;
+  --noise: 0;
+}
+
+@theme {
+  --font-sans: "Hind Siliguri", ui-sans-serif, system-ui, sans-serif;
+  --color-brand: #05893e;
+  --color-brand-strong: #047f39;
+  --color-brand-deep: #02642b;
+  --color-up: #d03739;
+  --color-down: #1a9951;
+  --color-surface: #fafcfa;
+  --color-page: #f0f5f0;
+  --color-line: #e1e8e1;
+  --color-ink: #1d271f;
+  --animate-ticker: ticker 60s linear infinite;
+  @keyframes ticker {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 9rem;
+}
+
+body {
+  background: var(--color-page);
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+  min-height: 100dvh;
+  overflow-x: hidden;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .ticker-track { animation: none !important; }
+  .ticker-viewport { overflow-x: auto; }
+}
+
+/* Pause the ticker while hovered or focused so it can be read. */
+.ticker-viewport:hover .ticker-track,
+.ticker-viewport:focus-within .ticker-track {
+  animation-play-state: paused;
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-brand);
+  outline-offset: 2px;
+}
+
+/* HeroUI theme tokens re-pointed at the BazarDor palette (light theme only). */
+:root {
+  --accent: #05893e;
+  --accent-foreground: #f3fbf4;
+  --danger: #d03739;
+  --danger-foreground: #fff6f5;
+  --background: #f0f5f0;
+  --foreground: #1d271f;
+  --surface: #fafcfa;
+  --border: #e1e8e1;
+  color-scheme: light;
+}
+
+.button { border-radius: 0.5rem; font-weight: 600; }
